@@ -2,25 +2,39 @@
 
 <h1>Documents</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% i=1 %>
+<div class="row">
+<% @documents.each do |document| %>
+  <div class="col m4 s12">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title"><%= document.title %></span>
+          <p>
+            <%= document.text[0..45] %>
+            <%if document.text.length > 45 %>...<%end%>
+          </p>
+      </div>
+      <div class="card-action">
+        <%= link_to 'Show', document %>
+        <%= link_to 'Edit', edit_document_path(document) %>
 
-  <tbody>
-    <% @documents.each do |document| %>
-      <tr>
-        <td><%= document.title %>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_document_path(document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <% if document.edits.size > 0%>
+          <a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates=<%='dropdown'+i.to_s%> >View Edit History</a>
 
+          <ul id=<%='dropdown'+i.to_s%> class='dropdown-content'>
+          <% document.edits.each do |edit| %>
+              <li><%= link_to edit.user.email, edit%></li>
+          <% end %>
+          </ul>
+        <% else %>
+          <a class='dropdown-button btn'>No Edit History</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%i=i+1%>
+<%end%>
+</div>
 <br>
 
-<%= link_to 'New Document', new_document_path %>
+<%= link_to 'New Document', new_document_path, class: 'btn' %>
