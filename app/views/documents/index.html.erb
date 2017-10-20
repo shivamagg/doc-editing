@@ -19,7 +19,7 @@
         <%= link_to 'Edit', edit_document_path(document) %>
 
         <% if document.edits.size > 0%>
-          <a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates=<%='dropdown'+i.to_s%> >View Edit History</a>
+          <a class='dropdown-button btn' data-beloworigin="true" data-activates=<%='dropdown'+i.to_s%> >View Edit History</a>
 
           <ul id=<%='dropdown'+i.to_s%> class='dropdown-content'>
           <% document.edits.each do |edit| %>
