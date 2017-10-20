@@ -3,8 +3,8 @@
   <head>
     <title>DocEditing</title>
     <% if user_signed_in? %>
+      <%= link_to('Home', root_path, class: 'btn') %>
       <%= link_to('Logout', destroy_user_session_path, class: 'btn', method: :delete) %>        
-      </li>
     <% end %>
     <%= csrf_meta_tags %>
 
