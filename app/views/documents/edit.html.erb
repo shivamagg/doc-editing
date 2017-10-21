@@ -1,9 +1,16 @@
 <h1>Editing Document</h1>
 
-<%= form_for @document do |f| %>
+<div class="row">
+	<div class="col s12 m3"></div>
+	<%= form_for @document, html: {class: 'col s12 m6'} do |f| %>
 
-  <%= f.text_area :text, cols: "100", rows: "10" %><br />
+		<div class="row">
+			<div class="input-field col s12">
+	  		<%= f.text_area :text, class: 'materialize-textarea' %><br />
+	  	</div>
+	  </div>
 
-  <%= f.submit %>
-<% end %>
+	  <%= f.submit 'Update Document', class: 'btn' %>
+	<% end %>
+</div>
 
