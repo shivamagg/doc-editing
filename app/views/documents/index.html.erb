@@ -22,7 +22,7 @@
           <a class='dropdown-button btn' data-beloworigin="true" data-activates=<%='dropdown'+i.to_s%> >View Edit History</a>
 
           <ul id=<%='dropdown'+i.to_s%> class='dropdown-content'>
-          <% document.edits.each do |edit| %>
+          <% document.edits.reverse.each do |edit| %>
               <li><%= link_to edit.user.email, edit%></li>
           <% end %>
           </ul>
