@@ -1,5 +1,6 @@
 module TextChange
-	def text_change old_text, new_text
+  # to convert new_text to old_text
+	def text_change old_text, new_text  
   	i=0
   	while (i<new_text.length and i<old_text.length)
   		break if new_text[i]!=old_text[i]
@@ -24,11 +25,13 @@ module TextChange
   	change[:addition] = -1
   	change[:addition_text] = ""
   	if k<i
+      error = i-k-1
   		change[:del_start] = i
-  		change[:del_end] = j
+  		change[:del_end] = j+error
   	elsif j<i
+      error = i-j-1
   		change[:addition] = i
-  		change[:addition_text] = old_text[i..k]
+  		change[:addition_text] = old_text[i..(k+error)]
   	else
   		change[:del_start] = i
   		change[:del_end] = j
