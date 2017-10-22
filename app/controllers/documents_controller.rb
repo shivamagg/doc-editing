@@ -28,8 +28,7 @@ class DocumentsController < ApplicationController
         format.json { render json: {error: 'Document is currently unavailable for editing'}, status: :unprocessable_entity }
       end
     else
-      @document.is_available = false
-      @document.save
+      @document.is_not_available!
     end
   end
 
@@ -72,8 +71,7 @@ class DocumentsController < ApplicationController
       end
     end
 
-    @document.is_available = true
-    @document.save
+    @document.is_available!
   end
 
   # DELETE /documents/1
